@@ -4,20 +4,18 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SuggestWords.MyButtons
-
 {
-    public class ButtonConstructor : Button
+    public class SpecialButtonConstructor : Button
     {
         // Поля
 
         private int borderSize = 0;
-        public static int borderRadius = 30;
+        public static int borderRadius = 10;
         private Color borderColor = Color.AliceBlue;
 
-        public ButtonConstructor()
+        public SpecialButtonConstructor()
         {
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;

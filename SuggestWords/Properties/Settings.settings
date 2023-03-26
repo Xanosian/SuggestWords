@@ -6,10 +6,25 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="colorFinal" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">255, 128, 0</Value>
+      <Value Profile="(Default)">MediumSlateBlue</Value>
     </Setting>
     <Setting Name="colortTextFinal" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="borderRadius" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="answersToDef" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="foneColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkSlateBlue</Value>
+    </Setting>
+    <Setting Name="disabledColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Indigo</Value>
+    </Setting>
+    <Setting Name="specialBorderRadius" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
 </SettingsFile>

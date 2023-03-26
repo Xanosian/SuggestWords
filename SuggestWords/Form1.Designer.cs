@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             answerLabel = new Label();
             answerTextBox = new TextBox();
             label1 = new Label();
-            thinkButton = new Button();
             thinkLabel = new Label();
             numDefWordsText = new Label();
             answeredWordsLabel = new Label();
@@ -41,14 +41,10 @@
             menuStrip1 = new MenuStrip();
             настройкиToolStripMenuItem = new ToolStripMenuItem();
             стильToolStripMenuItem = new ToolStripMenuItem();
-            рандомныйToolStripMenuItem = new ToolStripMenuItem();
-            синийToolStripMenuItem = new ToolStripMenuItem();
-            красныйToolStripMenuItem = new ToolStripMenuItem();
-            зелёныйToolStripMenuItem = new ToolStripMenuItem();
-            жёлтыйToolStripMenuItem = new ToolStripMenuItem();
-            фиолетовыйToolStripMenuItem = new ToolStripMenuItem();
-            голубойToolStripMenuItem = new ToolStripMenuItem();
-            оранжевыйToolStripMenuItem = new ToolStripMenuItem();
+            квадратныйToolStripMenuItem = new ToolStripMenuItem();
+            закруглённыйToolStripMenuItem = new ToolStripMenuItem();
+            сильноЗакруглённыйToolStripMenuItem = new ToolStripMenuItem();
+            почтиКруглыйToolStripMenuItem = new ToolStripMenuItem();
             startButton = new MyButtons.ButtonConstructor();
             buttonConstructor1 = new MyButtons.ButtonConstructor();
             buttonConstructor2 = new MyButtons.ButtonConstructor();
@@ -69,7 +65,6 @@
             buttonConstructor17 = new MyButtons.ButtonConstructor();
             buttonConstructor18 = new MyButtons.ButtonConstructor();
             defTextBox = new Label();
-            cheatCode = new MyButtons.ButtonConstructor();
             buttonConstructor20 = new MyButtons.ButtonConstructor();
             buttonConstructor21 = new MyButtons.ButtonConstructor();
             buttonConstructor22 = new MyButtons.ButtonConstructor();
@@ -88,11 +83,16 @@
             buttonConstructor35 = new MyButtons.ButtonConstructor();
             buttonConstructor36 = new MyButtons.ButtonConstructor();
             buttonConstructor37 = new MyButtons.ButtonConstructor();
-            undoButton = new PictureBox();
             pictureBox1 = new PictureBox();
+            startButtonDisabled = new MyButtons.ButtonConstructor();
+            thinkButton = new PictureBox();
+            cheatCode = new MyButtons.SpecialButtonConstructor();
+            cheatCodeDisabled = new MyButtons.SpecialButtonConstructor();
+            undoButton = new MyButtons.ButtonConstructor();
+            undoButtonDisabled = new MyButtons.ButtonConstructor();
             menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)undoButton).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)thinkButton).BeginInit();
             SuspendLayout();
             // 
             // answerLabel
@@ -126,20 +126,6 @@
             label1.TabIndex = 25;
             label1.Text = "Проверка: ";
             // 
-            // thinkButton
-            // 
-            thinkButton.BackColor = SystemColors.ControlLight;
-            thinkButton.BackgroundImage = Properties.Resources.lamp_logo_png;
-            thinkButton.BackgroundImageLayout = ImageLayout.Stretch;
-            thinkButton.Enabled = false;
-            thinkButton.Location = new Point(859, 114);
-            thinkButton.Name = "thinkButton";
-            thinkButton.Size = new Size(55, 53);
-            thinkButton.TabIndex = 28;
-            thinkButton.UseVisualStyleBackColor = false;
-            thinkButton.Visible = false;
-            thinkButton.Click += thinkButton_Click;
-            // 
             // thinkLabel
             // 
             thinkLabel.AutoSize = true;
@@ -170,7 +156,7 @@
             // 
             defAnswerLabel.AutoSize = true;
             defAnswerLabel.Font = new Font("Segoe UI", 18.15652F, FontStyle.Regular, GraphicsUnit.Point);
-            defAnswerLabel.ForeColor = Color.Firebrick;
+            defAnswerLabel.ForeColor = Color.WhiteSmoke;
             defAnswerLabel.Location = new Point(864, 191);
             defAnswerLabel.Name = "defAnswerLabel";
             defAnswerLabel.Size = new Size(0, 40);
@@ -188,7 +174,7 @@
             // 
             // cheatTextBox
             // 
-            cheatTextBox.BackColor = Color.SlateBlue;
+            cheatTextBox.BackColor = Color.GhostWhite;
             cheatTextBox.BorderStyle = BorderStyle.FixedSingle;
             cheatTextBox.Location = new Point(12, 41);
             cheatTextBox.Name = "cheatTextBox";
@@ -217,74 +203,39 @@
             // 
             // стильToolStripMenuItem
             // 
-            стильToolStripMenuItem.BackColor = Color.SlateBlue;
-            стильToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { рандомныйToolStripMenuItem, синийToolStripMenuItem, красныйToolStripMenuItem, зелёныйToolStripMenuItem, жёлтыйToolStripMenuItem, фиолетовыйToolStripMenuItem, голубойToolStripMenuItem, оранжевыйToolStripMenuItem });
+            стильToolStripMenuItem.BackColor = Color.GhostWhite;
+            стильToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { квадратныйToolStripMenuItem, закруглённыйToolStripMenuItem, сильноЗакруглённыйToolStripMenuItem, почтиКруглыйToolStripMenuItem });
             стильToolStripMenuItem.Name = "стильToolStripMenuItem";
-            стильToolStripMenuItem.Size = new Size(217, 26);
-            стильToolStripMenuItem.Text = "Стиль";
+            стильToolStripMenuItem.Size = new Size(184, 26);
+            стильToolStripMenuItem.Text = "Стиль кнопок";
             // 
-            // рандомныйToolStripMenuItem
+            // квадратныйToolStripMenuItem
             // 
-            рандомныйToolStripMenuItem.Name = "рандомныйToolStripMenuItem";
-            рандомныйToolStripMenuItem.Size = new Size(217, 26);
-            рандомныйToolStripMenuItem.Text = "Рандомный";
-            рандомныйToolStripMenuItem.Click += ColorRandom_ToolStripMenuItem_Click;
+            квадратныйToolStripMenuItem.Name = "квадратныйToolStripMenuItem";
+            квадратныйToolStripMenuItem.Size = new Size(243, 26);
+            квадратныйToolStripMenuItem.Text = "Квадратный";
+            квадратныйToolStripMenuItem.Click += styleClick;
             // 
-            // синийToolStripMenuItem
+            // закруглённыйToolStripMenuItem
             // 
-            синийToolStripMenuItem.BackColor = Color.SteelBlue;
-            синийToolStripMenuItem.Name = "синийToolStripMenuItem";
-            синийToolStripMenuItem.Size = new Size(217, 26);
-            синийToolStripMenuItem.Text = "Синий";
-            синийToolStripMenuItem.Click += ChangeColor_ToolStripMenuItem_Click;
+            закруглённыйToolStripMenuItem.Name = "закруглённыйToolStripMenuItem";
+            закруглённыйToolStripMenuItem.Size = new Size(243, 26);
+            закруглённыйToolStripMenuItem.Text = "Закруглённый";
+            закруглённыйToolStripMenuItem.Click += styleClick;
             // 
-            // красныйToolStripMenuItem
+            // сильноЗакруглённыйToolStripMenuItem
             // 
-            красныйToolStripMenuItem.BackColor = Color.Firebrick;
-            красныйToolStripMenuItem.Name = "красныйToolStripMenuItem";
-            красныйToolStripMenuItem.Size = new Size(217, 26);
-            красныйToolStripMenuItem.Text = "Красный";
-            красныйToolStripMenuItem.Click += ChangeColor_ToolStripMenuItem_Click;
+            сильноЗакруглённыйToolStripMenuItem.Name = "сильноЗакруглённыйToolStripMenuItem";
+            сильноЗакруглённыйToolStripMenuItem.Size = new Size(243, 26);
+            сильноЗакруглённыйToolStripMenuItem.Text = "Сильно закруглённый";
+            сильноЗакруглённыйToolStripMenuItem.Click += styleClick;
             // 
-            // зелёныйToolStripMenuItem
+            // почтиКруглыйToolStripMenuItem
             // 
-            зелёныйToolStripMenuItem.BackColor = Color.SeaGreen;
-            зелёныйToolStripMenuItem.Name = "зелёныйToolStripMenuItem";
-            зелёныйToolStripMenuItem.Size = new Size(217, 26);
-            зелёныйToolStripMenuItem.Text = "Зелёный";
-            зелёныйToolStripMenuItem.Click += ChangeColor_ToolStripMenuItem_Click;
-            // 
-            // жёлтыйToolStripMenuItem
-            // 
-            жёлтыйToolStripMenuItem.BackColor = Color.Gold;
-            жёлтыйToolStripMenuItem.Name = "жёлтыйToolStripMenuItem";
-            жёлтыйToolStripMenuItem.Size = new Size(217, 26);
-            жёлтыйToolStripMenuItem.Text = "Жёлтый";
-            жёлтыйToolStripMenuItem.Click += ChangeColor_ToolStripMenuItem_Click;
-            // 
-            // фиолетовыйToolStripMenuItem
-            // 
-            фиолетовыйToolStripMenuItem.BackColor = Color.MediumSlateBlue;
-            фиолетовыйToolStripMenuItem.Name = "фиолетовыйToolStripMenuItem";
-            фиолетовыйToolStripMenuItem.Size = new Size(217, 26);
-            фиолетовыйToolStripMenuItem.Text = "Фиолетовый";
-            фиолетовыйToolStripMenuItem.Click += ChangeColor_ToolStripMenuItem_Click;
-            // 
-            // голубойToolStripMenuItem
-            // 
-            голубойToolStripMenuItem.BackColor = Color.MediumTurquoise;
-            голубойToolStripMenuItem.Name = "голубойToolStripMenuItem";
-            голубойToolStripMenuItem.Size = new Size(217, 26);
-            голубойToolStripMenuItem.Text = "Голубой";
-            голубойToolStripMenuItem.Click += ChangeColor_ToolStripMenuItem_Click;
-            // 
-            // оранжевыйToolStripMenuItem
-            // 
-            оранжевыйToolStripMenuItem.BackColor = Color.Orange;
-            оранжевыйToolStripMenuItem.Name = "оранжевыйToolStripMenuItem";
-            оранжевыйToolStripMenuItem.Size = new Size(217, 26);
-            оранжевыйToolStripMenuItem.Text = "Оранжевый";
-            оранжевыйToolStripMenuItem.Click += ChangeColor_ToolStripMenuItem_Click;
+            почтиКруглыйToolStripMenuItem.Name = "почтиКруглыйToolStripMenuItem";
+            почтиКруглыйToolStripMenuItem.Size = new Size(243, 26);
+            почтиКруглыйToolStripMenuItem.Text = "Почти круглый";
+            почтиКруглыйToolStripMenuItem.Click += styleClick;
             // 
             // startButton
             // 
@@ -293,7 +244,7 @@
             startButton.FlatStyle = FlatStyle.Flat;
             startButton.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             startButton.ForeColor = Color.MintCream;
-            startButton.Location = new Point(363, 533);
+            startButton.Location = new Point(362, 533);
             startButton.Name = "startButton";
             startButton.Size = new Size(247, 77);
             startButton.TabIndex = 40;
@@ -306,7 +257,7 @@
             buttonConstructor1.BackColor = Color.MediumSlateBlue;
             buttonConstructor1.FlatAppearance.BorderSize = 0;
             buttonConstructor1.FlatStyle = FlatStyle.Flat;
-            buttonConstructor1.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor1.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor1.ForeColor = Color.DarkSlateGray;
             buttonConstructor1.Location = new Point(202, 136);
             buttonConstructor1.Name = "buttonConstructor1";
@@ -321,7 +272,7 @@
             buttonConstructor2.BackColor = Color.MediumSlateBlue;
             buttonConstructor2.FlatAppearance.BorderSize = 0;
             buttonConstructor2.FlatStyle = FlatStyle.Flat;
-            buttonConstructor2.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor2.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor2.ForeColor = Color.DarkSlateGray;
             buttonConstructor2.Location = new Point(295, 136);
             buttonConstructor2.Name = "buttonConstructor2";
@@ -336,7 +287,7 @@
             buttonConstructor3.BackColor = Color.MediumSlateBlue;
             buttonConstructor3.FlatAppearance.BorderSize = 0;
             buttonConstructor3.FlatStyle = FlatStyle.Flat;
-            buttonConstructor3.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor3.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor3.ForeColor = Color.DarkSlateGray;
             buttonConstructor3.Location = new Point(388, 136);
             buttonConstructor3.Name = "buttonConstructor3";
@@ -351,7 +302,7 @@
             buttonConstructor4.BackColor = Color.MediumSlateBlue;
             buttonConstructor4.FlatAppearance.BorderSize = 0;
             buttonConstructor4.FlatStyle = FlatStyle.Flat;
-            buttonConstructor4.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor4.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor4.ForeColor = Color.DarkSlateGray;
             buttonConstructor4.Location = new Point(481, 136);
             buttonConstructor4.Name = "buttonConstructor4";
@@ -366,7 +317,7 @@
             buttonConstructor5.BackColor = Color.MediumSlateBlue;
             buttonConstructor5.FlatAppearance.BorderSize = 0;
             buttonConstructor5.FlatStyle = FlatStyle.Flat;
-            buttonConstructor5.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor5.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor5.ForeColor = Color.DarkSlateGray;
             buttonConstructor5.Location = new Point(574, 136);
             buttonConstructor5.Name = "buttonConstructor5";
@@ -381,7 +332,7 @@
             buttonConstructor6.BackColor = Color.MediumSlateBlue;
             buttonConstructor6.FlatAppearance.BorderSize = 0;
             buttonConstructor6.FlatStyle = FlatStyle.Flat;
-            buttonConstructor6.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor6.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor6.ForeColor = Color.DarkSlateGray;
             buttonConstructor6.Location = new Point(667, 136);
             buttonConstructor6.Name = "buttonConstructor6";
@@ -396,7 +347,7 @@
             buttonConstructor7.BackColor = Color.MediumSlateBlue;
             buttonConstructor7.FlatAppearance.BorderSize = 0;
             buttonConstructor7.FlatStyle = FlatStyle.Flat;
-            buttonConstructor7.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor7.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor7.ForeColor = Color.DarkSlateGray;
             buttonConstructor7.Location = new Point(667, 231);
             buttonConstructor7.Name = "buttonConstructor7";
@@ -411,7 +362,7 @@
             buttonConstructor8.BackColor = Color.MediumSlateBlue;
             buttonConstructor8.FlatAppearance.BorderSize = 0;
             buttonConstructor8.FlatStyle = FlatStyle.Flat;
-            buttonConstructor8.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor8.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor8.ForeColor = Color.DarkSlateGray;
             buttonConstructor8.Location = new Point(574, 231);
             buttonConstructor8.Name = "buttonConstructor8";
@@ -426,7 +377,7 @@
             buttonConstructor9.BackColor = Color.MediumSlateBlue;
             buttonConstructor9.FlatAppearance.BorderSize = 0;
             buttonConstructor9.FlatStyle = FlatStyle.Flat;
-            buttonConstructor9.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor9.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor9.ForeColor = Color.DarkSlateGray;
             buttonConstructor9.Location = new Point(481, 231);
             buttonConstructor9.Name = "buttonConstructor9";
@@ -441,7 +392,7 @@
             buttonConstructor10.BackColor = Color.MediumSlateBlue;
             buttonConstructor10.FlatAppearance.BorderSize = 0;
             buttonConstructor10.FlatStyle = FlatStyle.Flat;
-            buttonConstructor10.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor10.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor10.ForeColor = Color.DarkSlateGray;
             buttonConstructor10.Location = new Point(388, 231);
             buttonConstructor10.Name = "buttonConstructor10";
@@ -456,7 +407,7 @@
             buttonConstructor11.BackColor = Color.MediumSlateBlue;
             buttonConstructor11.FlatAppearance.BorderSize = 0;
             buttonConstructor11.FlatStyle = FlatStyle.Flat;
-            buttonConstructor11.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor11.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor11.ForeColor = Color.DarkSlateGray;
             buttonConstructor11.Location = new Point(295, 231);
             buttonConstructor11.Name = "buttonConstructor11";
@@ -471,7 +422,7 @@
             buttonConstructor12.BackColor = Color.MediumSlateBlue;
             buttonConstructor12.FlatAppearance.BorderSize = 0;
             buttonConstructor12.FlatStyle = FlatStyle.Flat;
-            buttonConstructor12.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor12.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor12.ForeColor = Color.DarkSlateGray;
             buttonConstructor12.Location = new Point(202, 231);
             buttonConstructor12.Name = "buttonConstructor12";
@@ -486,7 +437,7 @@
             buttonConstructor13.BackColor = Color.MediumSlateBlue;
             buttonConstructor13.FlatAppearance.BorderSize = 0;
             buttonConstructor13.FlatStyle = FlatStyle.Flat;
-            buttonConstructor13.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor13.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor13.ForeColor = Color.DarkSlateGray;
             buttonConstructor13.Location = new Point(667, 326);
             buttonConstructor13.Name = "buttonConstructor13";
@@ -501,7 +452,7 @@
             buttonConstructor14.BackColor = Color.MediumSlateBlue;
             buttonConstructor14.FlatAppearance.BorderSize = 0;
             buttonConstructor14.FlatStyle = FlatStyle.Flat;
-            buttonConstructor14.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor14.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor14.ForeColor = Color.DarkSlateGray;
             buttonConstructor14.Location = new Point(574, 326);
             buttonConstructor14.Name = "buttonConstructor14";
@@ -516,7 +467,7 @@
             buttonConstructor15.BackColor = Color.MediumSlateBlue;
             buttonConstructor15.FlatAppearance.BorderSize = 0;
             buttonConstructor15.FlatStyle = FlatStyle.Flat;
-            buttonConstructor15.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor15.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor15.ForeColor = Color.DarkSlateGray;
             buttonConstructor15.Location = new Point(481, 326);
             buttonConstructor15.Name = "buttonConstructor15";
@@ -531,7 +482,7 @@
             buttonConstructor16.BackColor = Color.MediumSlateBlue;
             buttonConstructor16.FlatAppearance.BorderSize = 0;
             buttonConstructor16.FlatStyle = FlatStyle.Flat;
-            buttonConstructor16.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor16.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor16.ForeColor = Color.DarkSlateGray;
             buttonConstructor16.Location = new Point(388, 326);
             buttonConstructor16.Name = "buttonConstructor16";
@@ -546,7 +497,7 @@
             buttonConstructor17.BackColor = Color.MediumSlateBlue;
             buttonConstructor17.FlatAppearance.BorderSize = 0;
             buttonConstructor17.FlatStyle = FlatStyle.Flat;
-            buttonConstructor17.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor17.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor17.ForeColor = Color.DarkSlateGray;
             buttonConstructor17.Location = new Point(295, 326);
             buttonConstructor17.Name = "buttonConstructor17";
@@ -561,7 +512,7 @@
             buttonConstructor18.BackColor = Color.MediumSlateBlue;
             buttonConstructor18.FlatAppearance.BorderSize = 0;
             buttonConstructor18.FlatStyle = FlatStyle.Flat;
-            buttonConstructor18.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor18.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor18.ForeColor = Color.DarkSlateGray;
             buttonConstructor18.Location = new Point(202, 326);
             buttonConstructor18.Name = "buttonConstructor18";
@@ -581,19 +532,7 @@
             defTextBox.Size = new Size(364, 55);
             defTextBox.TabIndex = 59;
             defTextBox.Text = "Игра \"Угадай слова\"";
-            // 
-            // cheatCode
-            // 
-            cheatCode.BackColor = Color.MediumSlateBlue;
-            cheatCode.FlatAppearance.BorderSize = 0;
-            cheatCode.FlatStyle = FlatStyle.Flat;
-            cheatCode.ForeColor = Color.DarkSlateGray;
-            cheatCode.Location = new Point(12, 73);
-            cheatCode.Name = "cheatCode";
-            cheatCode.Size = new Size(99, 94);
-            cheatCode.TabIndex = 60;
-            cheatCode.Text = "buttonConstructor19";
-            cheatCode.UseVisualStyleBackColor = false;
+            defTextBox.TextAlign = ContentAlignment.TopCenter;
             // 
             // buttonConstructor20
             // 
@@ -601,7 +540,7 @@
             buttonConstructor20.Enabled = false;
             buttonConstructor20.FlatAppearance.BorderSize = 0;
             buttonConstructor20.FlatStyle = FlatStyle.Flat;
-            buttonConstructor20.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor20.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor20.ForeColor = Color.DarkSlateGray;
             buttonConstructor20.Location = new Point(667, 335);
             buttonConstructor20.Name = "buttonConstructor20";
@@ -615,7 +554,7 @@
             buttonConstructor21.Enabled = false;
             buttonConstructor21.FlatAppearance.BorderSize = 0;
             buttonConstructor21.FlatStyle = FlatStyle.Flat;
-            buttonConstructor21.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor21.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor21.ForeColor = Color.DarkSlateGray;
             buttonConstructor21.Location = new Point(574, 335);
             buttonConstructor21.Name = "buttonConstructor21";
@@ -629,7 +568,7 @@
             buttonConstructor22.Enabled = false;
             buttonConstructor22.FlatAppearance.BorderSize = 0;
             buttonConstructor22.FlatStyle = FlatStyle.Flat;
-            buttonConstructor22.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor22.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor22.ForeColor = Color.DarkSlateGray;
             buttonConstructor22.Location = new Point(481, 335);
             buttonConstructor22.Name = "buttonConstructor22";
@@ -643,7 +582,7 @@
             buttonConstructor23.Enabled = false;
             buttonConstructor23.FlatAppearance.BorderSize = 0;
             buttonConstructor23.FlatStyle = FlatStyle.Flat;
-            buttonConstructor23.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor23.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor23.ForeColor = Color.DarkSlateGray;
             buttonConstructor23.Location = new Point(388, 335);
             buttonConstructor23.Name = "buttonConstructor23";
@@ -657,7 +596,7 @@
             buttonConstructor24.Enabled = false;
             buttonConstructor24.FlatAppearance.BorderSize = 0;
             buttonConstructor24.FlatStyle = FlatStyle.Flat;
-            buttonConstructor24.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor24.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor24.ForeColor = Color.DarkSlateGray;
             buttonConstructor24.Location = new Point(295, 335);
             buttonConstructor24.Name = "buttonConstructor24";
@@ -671,7 +610,7 @@
             buttonConstructor25.Enabled = false;
             buttonConstructor25.FlatAppearance.BorderSize = 0;
             buttonConstructor25.FlatStyle = FlatStyle.Flat;
-            buttonConstructor25.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor25.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor25.ForeColor = Color.DarkSlateGray;
             buttonConstructor25.Location = new Point(202, 335);
             buttonConstructor25.Name = "buttonConstructor25";
@@ -685,7 +624,7 @@
             buttonConstructor26.Enabled = false;
             buttonConstructor26.FlatAppearance.BorderSize = 0;
             buttonConstructor26.FlatStyle = FlatStyle.Flat;
-            buttonConstructor26.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor26.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor26.ForeColor = Color.DarkSlateGray;
             buttonConstructor26.Location = new Point(667, 240);
             buttonConstructor26.Name = "buttonConstructor26";
@@ -699,7 +638,7 @@
             buttonConstructor27.Enabled = false;
             buttonConstructor27.FlatAppearance.BorderSize = 0;
             buttonConstructor27.FlatStyle = FlatStyle.Flat;
-            buttonConstructor27.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor27.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor27.ForeColor = Color.DarkSlateGray;
             buttonConstructor27.Location = new Point(574, 240);
             buttonConstructor27.Name = "buttonConstructor27";
@@ -713,7 +652,7 @@
             buttonConstructor28.Enabled = false;
             buttonConstructor28.FlatAppearance.BorderSize = 0;
             buttonConstructor28.FlatStyle = FlatStyle.Flat;
-            buttonConstructor28.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor28.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor28.ForeColor = Color.DarkSlateGray;
             buttonConstructor28.Location = new Point(481, 240);
             buttonConstructor28.Name = "buttonConstructor28";
@@ -727,7 +666,7 @@
             buttonConstructor29.Enabled = false;
             buttonConstructor29.FlatAppearance.BorderSize = 0;
             buttonConstructor29.FlatStyle = FlatStyle.Flat;
-            buttonConstructor29.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor29.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor29.ForeColor = Color.DarkSlateGray;
             buttonConstructor29.Location = new Point(388, 240);
             buttonConstructor29.Name = "buttonConstructor29";
@@ -741,7 +680,7 @@
             buttonConstructor30.Enabled = false;
             buttonConstructor30.FlatAppearance.BorderSize = 0;
             buttonConstructor30.FlatStyle = FlatStyle.Flat;
-            buttonConstructor30.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor30.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor30.ForeColor = Color.DarkSlateGray;
             buttonConstructor30.Location = new Point(295, 240);
             buttonConstructor30.Name = "buttonConstructor30";
@@ -755,7 +694,7 @@
             buttonConstructor31.Enabled = false;
             buttonConstructor31.FlatAppearance.BorderSize = 0;
             buttonConstructor31.FlatStyle = FlatStyle.Flat;
-            buttonConstructor31.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor31.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor31.ForeColor = Color.DarkSlateGray;
             buttonConstructor31.Location = new Point(202, 240);
             buttonConstructor31.Name = "buttonConstructor31";
@@ -769,7 +708,7 @@
             buttonConstructor32.Enabled = false;
             buttonConstructor32.FlatAppearance.BorderSize = 0;
             buttonConstructor32.FlatStyle = FlatStyle.Flat;
-            buttonConstructor32.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor32.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor32.ForeColor = Color.DarkSlateGray;
             buttonConstructor32.Location = new Point(667, 145);
             buttonConstructor32.Name = "buttonConstructor32";
@@ -783,7 +722,7 @@
             buttonConstructor33.Enabled = false;
             buttonConstructor33.FlatAppearance.BorderSize = 0;
             buttonConstructor33.FlatStyle = FlatStyle.Flat;
-            buttonConstructor33.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor33.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor33.ForeColor = Color.DarkSlateGray;
             buttonConstructor33.Location = new Point(574, 145);
             buttonConstructor33.Name = "buttonConstructor33";
@@ -797,7 +736,7 @@
             buttonConstructor34.Enabled = false;
             buttonConstructor34.FlatAppearance.BorderSize = 0;
             buttonConstructor34.FlatStyle = FlatStyle.Flat;
-            buttonConstructor34.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor34.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor34.ForeColor = Color.DarkSlateGray;
             buttonConstructor34.Location = new Point(481, 145);
             buttonConstructor34.Name = "buttonConstructor34";
@@ -811,7 +750,7 @@
             buttonConstructor35.Enabled = false;
             buttonConstructor35.FlatAppearance.BorderSize = 0;
             buttonConstructor35.FlatStyle = FlatStyle.Flat;
-            buttonConstructor35.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor35.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor35.ForeColor = Color.DarkSlateGray;
             buttonConstructor35.Location = new Point(388, 145);
             buttonConstructor35.Name = "buttonConstructor35";
@@ -825,7 +764,7 @@
             buttonConstructor36.Enabled = false;
             buttonConstructor36.FlatAppearance.BorderSize = 0;
             buttonConstructor36.FlatStyle = FlatStyle.Flat;
-            buttonConstructor36.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor36.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor36.ForeColor = Color.DarkSlateGray;
             buttonConstructor36.Location = new Point(295, 145);
             buttonConstructor36.Name = "buttonConstructor36";
@@ -839,26 +778,13 @@
             buttonConstructor37.Enabled = false;
             buttonConstructor37.FlatAppearance.BorderSize = 0;
             buttonConstructor37.FlatStyle = FlatStyle.Flat;
-            buttonConstructor37.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonConstructor37.Font = new Font("Showcard Gothic", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
             buttonConstructor37.ForeColor = Color.DarkSlateGray;
             buttonConstructor37.Location = new Point(202, 145);
             buttonConstructor37.Name = "buttonConstructor37";
             buttonConstructor37.Size = new Size(87, 89);
             buttonConstructor37.TabIndex = 61;
             buttonConstructor37.UseVisualStyleBackColor = false;
-            // 
-            // undoButton
-            // 
-            undoButton.Image = Properties.Resources._143012_vector_eraser_png_file_hd;
-            undoButton.InitialImage = null;
-            undoButton.Location = new Point(705, 430);
-            undoButton.Name = "undoButton";
-            undoButton.Size = new Size(100, 83);
-            undoButton.SizeMode = PictureBoxSizeMode.StretchImage;
-            undoButton.TabIndex = 79;
-            undoButton.TabStop = false;
-            undoButton.Visible = false;
-            undoButton.Click += undoButton_Click;
             // 
             // pictureBox1
             // 
@@ -869,6 +795,90 @@
             pictureBox1.TabIndex = 80;
             pictureBox1.TabStop = false;
             // 
+            // startButtonDisabled
+            // 
+            startButtonDisabled.BackColor = Color.Indigo;
+            startButtonDisabled.Enabled = false;
+            startButtonDisabled.FlatAppearance.BorderSize = 0;
+            startButtonDisabled.FlatStyle = FlatStyle.Flat;
+            startButtonDisabled.Font = new Font("Sitka Heading", 18.1565228F, FontStyle.Regular, GraphicsUnit.Point);
+            startButtonDisabled.ForeColor = Color.MintCream;
+            startButtonDisabled.Location = new Point(372, 543);
+            startButtonDisabled.Name = "startButtonDisabled";
+            startButtonDisabled.Size = new Size(247, 77);
+            startButtonDisabled.TabIndex = 81;
+            startButtonDisabled.UseVisualStyleBackColor = false;
+            // 
+            // thinkButton
+            // 
+            thinkButton.Image = Properties.Resources.lamp_logo_png;
+            thinkButton.Location = new Point(847, 91);
+            thinkButton.Name = "thinkButton";
+            thinkButton.Size = new Size(69, 67);
+            thinkButton.SizeMode = PictureBoxSizeMode.StretchImage;
+            thinkButton.TabIndex = 82;
+            thinkButton.TabStop = false;
+            thinkButton.Click += thinkButton_Click;
+            // 
+            // cheatCode
+            // 
+            cheatCode.BackColor = Color.MediumSlateBlue;
+            cheatCode.FlatAppearance.BorderSize = 0;
+            cheatCode.FlatStyle = FlatStyle.Flat;
+            cheatCode.ForeColor = Color.DarkSlateGray;
+            cheatCode.Location = new Point(138, 39);
+            cheatCode.Name = "cheatCode";
+            cheatCode.Size = new Size(180, 27);
+            cheatCode.TabIndex = 2;
+            cheatCode.Text = "Ввести чит-код";
+            cheatCode.UseVisualStyleBackColor = false;
+            cheatCode.Click += cheatCode_Click;
+            // 
+            // cheatCodeDisabled
+            // 
+            cheatCodeDisabled.BackColor = Color.Indigo;
+            cheatCodeDisabled.Enabled = false;
+            cheatCodeDisabled.FlatAppearance.BorderSize = 0;
+            cheatCodeDisabled.FlatStyle = FlatStyle.Flat;
+            cheatCodeDisabled.ForeColor = Color.DarkSlateGray;
+            cheatCodeDisabled.Location = new Point(148, 50);
+            cheatCodeDisabled.Name = "cheatCodeDisabled";
+            cheatCodeDisabled.Size = new Size(180, 27);
+            cheatCodeDisabled.TabIndex = 84;
+            cheatCodeDisabled.UseVisualStyleBackColor = false;
+            // 
+            // undoButton
+            // 
+            undoButton.BackColor = Color.MediumSlateBlue;
+            undoButton.FlatAppearance.BorderSize = 0;
+            undoButton.FlatStyle = FlatStyle.Flat;
+            undoButton.Font = new Font("Segoe UI", 36.3130455F, FontStyle.Regular, GraphicsUnit.Point);
+            undoButton.ForeColor = Color.Indigo;
+            undoButton.Location = new Point(704, 430);
+            undoButton.Name = "undoButton";
+            undoButton.Size = new Size(88, 86);
+            undoButton.TabIndex = 1;
+            undoButton.Text = "🠈";
+            undoButton.UseVisualStyleBackColor = false;
+            undoButton.Visible = false;
+            undoButton.Click += undoButton_Click;
+            // 
+            // undoButtonDisabled
+            // 
+            undoButtonDisabled.BackColor = Color.Indigo;
+            undoButtonDisabled.Enabled = false;
+            undoButtonDisabled.FlatAppearance.BorderSize = 0;
+            undoButtonDisabled.FlatStyle = FlatStyle.Flat;
+            undoButtonDisabled.Font = new Font("Segoe UI", 36.3130455F, FontStyle.Regular, GraphicsUnit.Point);
+            undoButtonDisabled.ForeColor = Color.DarkSlateBlue;
+            undoButtonDisabled.Location = new Point(704, 439);
+            undoButtonDisabled.Name = "undoButtonDisabled";
+            undoButtonDisabled.Size = new Size(88, 86);
+            undoButtonDisabled.TabIndex = 86;
+            undoButtonDisabled.Text = "🠈";
+            undoButtonDisabled.UseVisualStyleBackColor = false;
+            undoButtonDisabled.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
@@ -878,7 +888,7 @@
             ClientSize = new Size(982, 655);
             Controls.Add(undoButton);
             Controls.Add(cheatCode);
-            Controls.Add(defTextBox);
+            Controls.Add(thinkButton);
             Controls.Add(buttonConstructor13);
             Controls.Add(buttonConstructor14);
             Controls.Add(buttonConstructor15);
@@ -904,7 +914,6 @@
             Controls.Add(answeredWordsLabel);
             Controls.Add(numDefWordsText);
             Controls.Add(thinkLabel);
-            Controls.Add(thinkButton);
             Controls.Add(label1);
             Controls.Add(answerTextBox);
             Controls.Add(answerLabel);
@@ -928,15 +937,22 @@
             Controls.Add(buttonConstructor36);
             Controls.Add(buttonConstructor37);
             Controls.Add(pictureBox1);
+            Controls.Add(startButtonDisabled);
+            Controls.Add(cheatCodeDisabled);
+            Controls.Add(defTextBox);
+            Controls.Add(undoButtonDisabled);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximumSize = new Size(1000, 700);
             MinimumSize = new Size(1000, 700);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Try to suggest a Word";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)undoButton).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)thinkButton).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -945,7 +961,6 @@
         private Label answerLabel;
         private TextBox answerTextBox;
         private Label label1;
-        private Button thinkButton;
         private Label thinkLabel;
         private Label numDefWordsText;
         private Label answeredWordsLabel;
@@ -954,15 +969,6 @@
         private TextBox cheatTextBox;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem настройкиToolStripMenuItem;
-        private ToolStripMenuItem стильToolStripMenuItem;
-        private ToolStripMenuItem красныйToolStripMenuItem;
-        private ToolStripMenuItem зелёныйToolStripMenuItem;
-        private ToolStripMenuItem синийToolStripMenuItem;
-        private ToolStripMenuItem жёлтыйToolStripMenuItem;
-        private ToolStripMenuItem фиолетовыйToolStripMenuItem;
-        private ToolStripMenuItem голубойToolStripMenuItem;
-        private ToolStripMenuItem оранжевыйToolStripMenuItem;
-        private ToolStripMenuItem рандомныйToolStripMenuItem;
         private MyButtons.ButtonConstructor button;
         private MyButtons.ButtonConstructor startButton;
         private MyButtons.ButtonConstructor buttonConstructor1;
@@ -984,7 +990,6 @@
         private MyButtons.ButtonConstructor buttonConstructor17;
         private MyButtons.ButtonConstructor buttonConstructor18;
         private Label defTextBox;
-        private MyButtons.ButtonConstructor cheatCode;
         private MyButtons.ButtonConstructor buttonConstructor20;
         private MyButtons.ButtonConstructor buttonConstructor21;
         private MyButtons.ButtonConstructor buttonConstructor22;
@@ -1003,7 +1008,17 @@
         private MyButtons.ButtonConstructor buttonConstructor35;
         private MyButtons.ButtonConstructor buttonConstructor36;
         private MyButtons.ButtonConstructor buttonConstructor37;
-        private PictureBox undoButton;
         private PictureBox pictureBox1;
+        private MyButtons.ButtonConstructor startButtonDisabled;
+        private PictureBox thinkButton;
+        private ToolStripMenuItem стильToolStripMenuItem;
+        private ToolStripMenuItem квадратныйToolStripMenuItem;
+        private MyButtons.SpecialButtonConstructor cheatCode;
+        private MyButtons.SpecialButtonConstructor cheatCodeDisabled;
+        private MyButtons.ButtonConstructor undoButton;
+        private MyButtons.ButtonConstructor undoButtonDisabled;
+        private ToolStripMenuItem закруглённыйToolStripMenuItem;
+        private ToolStripMenuItem сильноЗакруглённыйToolStripMenuItem;
+        private ToolStripMenuItem почтиКруглыйToolStripMenuItem;
     }
 }

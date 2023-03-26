@@ -1,5 +1,6 @@
 using System.Text;
 using Accessibility;
+using SuggestWords.MyButtons;
 
 namespace SuggestWords
 {
@@ -20,14 +21,18 @@ namespace SuggestWords
 
         List<string> words = new List<string>() {"скоморох", "рыцарь", "король", "замок", "дракон", "дамба", "принцесса", "принц", "полицейский", "доктор", "алхимик", "волшебник",
             "бессмертие", "ребёнок", "вода", "камень", "корова", "институт", "противник", "девушка", "ловушка", "преступление", "божество", "средневековье", "школа", "озеро", "море",
-            "океан", "долина", "кровать", "ворона", "медведь", "кристалл", "посёлок", "город", "страна", "континент", "планета", "желание", "рыба" };
-        List<string> definitions = new List<string>() { "В древней Руси: певец-музыкант, бродячий комедиант", "Средневековый дворянский почётный титул в Европе", "Титул монарха. Глава королевства. Обычно наследственный, но иногда выборный." };
+            "океан", "долина", "кровать", "ворона", "медведь", "кристалл", "посёлок", "город", "страна", "континент", "планета", "желание", "рыба", "предатель", "подчинённый",
+            "искусство", "красота", "язык", "корона", "доблесть", "деревня", "поселение", "переправа", "рыболовство", "кузнец", "доспехи", "жемчуг", "заговор", "воровство", "страдание",
+            "наказание", "филин", "шоколад", "лекарство", "болезнь", "гонец", "придворный", "свадьба", "дворец", "крепость", "мечник", "лучник", "защитник", "страж", "часовой", "стрела",
+            "хозяин", "раб", "рабство", "поклонник", "священник", "богохульство", "жаба", "олень", "кабан", "лось", "волк", "собака", "кошка", "хранитель", "дворецкий"};
 
         public Form1()
         {
             InitializeComponent();
-            countAnswers = Properties.Settings.Default.countAnswersFinal;
 
+            thinkButton.Enabled = false;
+            countAnswers = Properties.Settings.Default.countAnswersFinal;
+            countAnswersToDef = Properties.Settings.Default.answersToDef;
 
             answerTextBox.Visible = false;
             thinkLabel.Text = countAnswersToDef.ToString() + "/" + "5";
@@ -117,7 +122,7 @@ namespace SuggestWords
                 // _buttonList[i].Size = new Size(84, 74);
             }
 
-            LoadColor(Properties.Settings.Default.colorFinal, Properties.Settings.Default.colortTextFinal);
+
 
         }
 
@@ -142,15 +147,20 @@ namespace SuggestWords
 
             if (answerTextBox.Text == sb.ToString())
             {
+
                 undoButton.Visible = false;
+                undoButtonDisabled.Visible = false;
                 this.BackColor = Color.White;
                 startButton.Visible = true;
+                startButtonDisabled.Visible = true;
                 startButton.Enabled = true;
+
                 letterFinalNo();
                 doVisible();
                 EnabledTrue();
-
-                defTextBox.Text = "";
+                defTextBox.ForeColor = Color.Black;
+                defTextBox.Visible = true;
+                // defTextBox.Text = "Отлично!";
                 countAnswers++;
                 if (countAnswersToDef < 5)
                 {
@@ -171,9 +181,8 @@ namespace SuggestWords
                 }
 
                 answeredWordsLabel.Text = "Слов отгадано: " + countAnswers.ToString();
+                // pictureBox2.Visible = true;
 
-                Properties.Settings.Default.countAnswersFinal = countAnswers;
-                Properties.Settings.Default.Save();
             }
         }
 
@@ -189,18 +198,21 @@ namespace SuggestWords
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            if (checkRandom == true)
-            {
-                RandomColors();
-                ChangeTextColor(buttonConstructor1.BackColor);
-            }
+            // pictureBox2.Visible = false;
+            Button letter = (Button)sender;
+            letter.Visible = false;
+            startButton.Enabled = false;
+            startButtonDisabled.Visible = false;
+
+            RandomColors();
+            ChangeTextColor(buttonConstructor1.BackColor);
+
             if (startButton.Text == "Начать")
                 startButton.Text = "Продолжить";
             sb.Remove(0, sb.Length);
             answerTextBox.Text = "";
 
-            Button letter = (Button)sender;
-            letter.Visible = false;
+
             value = random.Next(0, words.Count);
             sbAppend(value);
 
@@ -208,9 +220,11 @@ namespace SuggestWords
             thinkLabel.Visible = true;
             undoButton.Visible = true;
             undoButton.Enabled = false;
+            undoButtonDisabled.Visible = true;
             label2.Visible = true;
 
             cheatCode.Visible = true;
+            cheatCodeDisabled.Visible = true;
             cheatTextBox.Visible = true;
             answerTextBox.Visible = true;
 
@@ -222,9 +236,6 @@ namespace SuggestWords
         private void sbAppend(int value)
         {
             sb.Append(words[value]);
-            if (value >= 0 && value <= 2)
-                defTextBox.Text = definitions[value];
-
             answerLabel.Text = sb.ToString();
             int randomButton = 1;
             for (int i = 0; i < sb.Length; i++)
@@ -267,6 +278,7 @@ namespace SuggestWords
             // answerLabel.Visible= false;
 
             cheatCode.Visible = false;
+            cheatCodeDisabled.Visible = false;
             cheatTextBox.Visible = false;
 
         }
@@ -293,9 +305,6 @@ namespace SuggestWords
             RandomColors();
             checkRandom = true;
             ChangeTextColor(buttonConstructor1.BackColor);
-            Properties.Settings.Default.colorFinal = buttonConstructor1.BackColor;
-            Properties.Settings.Default.colortTextFinal = buttonConstructor1.ForeColor;
-            Properties.Settings.Default.Save();
         }
 
         private void RandomColors()
@@ -306,6 +315,15 @@ namespace SuggestWords
                 _buttonList[i].BackColor = (Color)_randomBackColors[randomColor];
                 this.BackColor = _randomColors[randomColor];
                 _buttonDisabledList[i].BackColor = _randomDisabledColors[randomColor];
+                menuStrip1.BackColor = _randomBackColors[randomColor];
+                pictureBox1.BackColor = _randomDisabledColors[randomColor];
+                startButton.BackColor = _randomBackColors[randomColor];
+                startButtonDisabled.BackColor = _randomDisabledColors[randomColor];
+                cheatCode.BackColor = _randomBackColors[randomColor];
+                cheatCodeDisabled.BackColor = _randomDisabledColors[randomColor];
+                undoButton.BackColor = _randomBackColors[randomColor];
+                undoButton.ForeColor = _randomDisabledColors[randomColor];
+                undoButtonDisabled.BackColor = _randomDisabledColors[randomColor];
             }
             // DoColors();
         }
@@ -318,9 +336,7 @@ namespace SuggestWords
                 checkRandom = false;
             ChangeTextColor(tsmi.BackColor);
 
-            Properties.Settings.Default.colorFinal = buttonConstructor1.BackColor;
-            Properties.Settings.Default.colortTextFinal = buttonConstructor1.ForeColor;
-            Properties.Settings.Default.Save();
+
         }
 
         private void ChangeColor(Color color)
@@ -332,13 +348,31 @@ namespace SuggestWords
 
         }
 
-        private void LoadColor(Color color, Color textColor)
+        private void LoadSettings(Color color, Color textColor, Color disabledColor, out int answers, out int answersToDef)
         {
+            ButtonConstructor.borderRadius = Properties.Settings.Default.borderRadius;
+            SpecialButtonConstructor.borderRadius = Properties.Settings.Default.specialBorderRadius;
+            answers = Properties.Settings.Default.countAnswersFinal;
+            answersToDef = Properties.Settings.Default.answersToDef;
+            this.BackColor = Properties.Settings.Default.foneColor;
+            startButton.BackColor = color;
+            startButtonDisabled.BackColor = disabledColor;
+            cheatCode.BackColor = color;
+            cheatCodeDisabled.BackColor = disabledColor;
+            menuStrip1.BackColor = color;
+            pictureBox1.BackColor = disabledColor;
+            undoButton.BackColor = color;
+            undoButton.ForeColor = disabledColor;
+            undoButtonDisabled.BackColor = disabledColor;
+
+
             for (int i = 1; i <= _buttonList.Count; i++)
             {
                 _buttonList[i].BackColor = color;
                 _buttonList[i].ForeColor = textColor;
+                _buttonDisabledList[i].BackColor = disabledColor;
             }
+
         }
 
         private void ChangeTextColor(Color color)
@@ -385,5 +419,97 @@ namespace SuggestWords
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadSettings(Properties.Settings.Default.colorFinal,
+                Properties.Settings.Default.colortTextFinal,
+                Properties.Settings.Default.disabledColor,
+                out countAnswers, out countAnswersToDef);
+            for (int i = 1; i <= _buttonList.Count; i++)
+            {
+                _buttonList[i].TabStop = false;
+                _buttonDisabledList[i].TabStop = false;
+            }
+            // startButton.TabStop = false;
+            startButtonDisabled.TabStop = false;
+            cheatCode.TabStop = false;
+            cheatCodeDisabled.TabStop = false;
+            // undoButton.TabStop = false;
+            undoButtonDisabled.TabStop = false;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.disabledColor = buttonConstructor20.BackColor;
+            Properties.Settings.Default.foneColor = this.BackColor;
+            Properties.Settings.Default.answersToDef = countAnswersToDef;
+            Properties.Settings.Default.borderRadius = ButtonConstructor.borderRadius;
+            Properties.Settings.Default.colorFinal = buttonConstructor1.BackColor;
+            Properties.Settings.Default.colortTextFinal = buttonConstructor1.ForeColor;
+            Properties.Settings.Default.countAnswersFinal = countAnswers;
+            Properties.Settings.Default.specialBorderRadius = SpecialButtonConstructor.borderRadius;
+            Properties.Settings.Default.Save();
+        }
+
+        private void styleClick(object sender, EventArgs e)
+        {
+            ToolStripMenuItem tsmp = (ToolStripMenuItem)sender;
+            if (tsmp.Text == "Квадратный")
+            {
+                ButtonConstructor.borderRadius = 0;
+                SpecialButtonConstructor.borderRadius = 0;
+            }
+            else if (tsmp.Text == "Закруглённый")
+            {
+                ButtonConstructor.borderRadius = 15;
+                SpecialButtonConstructor.borderRadius = 10;
+            }
+            else if (tsmp.Text == "Сильно закруглённый")
+            {
+                ButtonConstructor.borderRadius = 30;
+                SpecialButtonConstructor.borderRadius = 10;
+            }
+            else if (tsmp.Text == "Почти круглый")
+            {
+                ButtonConstructor.borderRadius = 40;
+                SpecialButtonConstructor.borderRadius = 10;
+            }
+
+            if (startButton.Visible == false)
+            {
+                for (int i = 1; i <= _buttonList.Count; i++)
+                {
+                    if (_buttonList[i].Text != "-")
+                    {
+                        _buttonList[i].Visible = false;
+                        _buttonDisabledList[i].Visible = false;
+                        _buttonList[i].Visible = true;
+                        _buttonDisabledList[i].Visible = true;
+                    }
+                }
+                undoButton.Visible = false;
+                undoButtonDisabled.Visible = false;
+                cheatCode.Visible = false;
+                cheatCodeDisabled.Visible = false;
+                undoButton.Visible = true;
+                undoButtonDisabled.Visible = true;
+                cheatCode.Visible = true;
+                cheatCodeDisabled.Visible = true;
+            }
+            else if (startButton.Visible == true)
+            {
+
+                startButton.Visible = false;
+                startButton.Visible = true;
+                startButtonDisabled.Visible = false;
+                startButtonDisabled.Visible = true;
+            }
+            // pictureBox2.Visible = true;
+
+
+            //this.Hide();
+            //MessageBox.Show("Перезайдите для обновления состояния.");
+            //this.Close();
+        }
     }
 }

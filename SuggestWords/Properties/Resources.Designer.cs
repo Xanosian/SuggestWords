@@ -83,6 +83,16 @@ namespace SuggestWords.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _278536336031211 {
+            get {
+                object obj = ResourceManager.GetObject("278536336031211", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lamp_logo_png {
             get {
                 object obj = ResourceManager.GetObject("lamp-logo-png", resourceCulture);

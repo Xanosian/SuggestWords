@@ -37,7 +37,7 @@ namespace SuggestWords.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255, 128, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MediumSlateBlue")]
         public global::System.Drawing.Color colorFinal {
             get {
                 return ((global::System.Drawing.Color)(this["colorFinal"]));
@@ -56,6 +56,66 @@ namespace SuggestWords.Properties {
             }
             set {
                 this["colortTextFinal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int borderRadius {
+            get {
+                return ((int)(this["borderRadius"]));
+            }
+            set {
+                this["borderRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int answersToDef {
+            get {
+                return ((int)(this["answersToDef"]));
+            }
+            set {
+                this["answersToDef"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkSlateBlue")]
+        public global::System.Drawing.Color foneColor {
+            get {
+                return ((global::System.Drawing.Color)(this["foneColor"]));
+            }
+            set {
+                this["foneColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Indigo")]
+        public global::System.Drawing.Color disabledColor {
+            get {
+                return ((global::System.Drawing.Color)(this["disabledColor"]));
+            }
+            set {
+                this["disabledColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int specialBorderRadius {
+            get {
+                return ((int)(this["specialBorderRadius"]));
+            }
+            set {
+                this["specialBorderRadius"] = value;
             }
         }
     }
